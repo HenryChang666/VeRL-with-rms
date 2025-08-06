@@ -26,13 +26,11 @@ reward_function 使用 `rider_reward`
 ```bash
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 cd ..
-THE_HOME=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/zhangrunlai
-MODEL_PATH=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/caozhiquan/checkpoints/llama_factory/longcat_18b_kefu_base_sft_training_train_data_v2_4_lr-1e-5_epoch-5
-# MODEL_PATH=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/ruanjingqing/program/llm/llm/Qwen2.5-7B-Instruct
-# REWARD_MODEL_PATH=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/ruanjingqing/program/llm/llm/Qwen2.5-32B-Instruct
-REWARD_MODEL_PATH1=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/caozhiquan/checkpoints/llama_factory/longcat_18b_kefu_base_sft_training_train_data_v2_4_lr-1e-5_epoch-5
-REWARD_MODEL_PATH2=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/caozhiquan/checkpoints/llama_factory/longcat_18b_kefu_base_sft_training_train_data_v2_4_lr-1e-5_epoch-5
-TRAIN_FILE=$THE_HOME/data/rider_v4/train_2.parquet
+THE_HOME=YOUR_HOME
+MODEL_PATH=YOUR_MODEL_PATH
+REWARD_MODEL_PATH1=YOUR_REWARD_MODEL_PATH1
+REWARD_MODEL_PATH2=YOUR_REWARD_MODEL_PATH2
+TRAIN_FILE=$THE_HOME/data/YOUR_PARQUET_DATA_PATH
 REWARD_FUCTION1=rider_reward
 REWARD_FUCTION2=consistency_reward
 
@@ -97,25 +95,24 @@ PYTHONUNBUFFERED=1 python3 -m verl.trainer.main_ppo \
 set -x
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
-cur_work_dir=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/zhangrunlai/verl
+cur_work_dir=YOUR_WORK_DIR
 cd $cur_work_dir
 source $cur_work_dir/utils/export_env_verl.sh
-export PATH=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/zhangrunlai/envs/myverl-3/bin:$PATH
+export PATH=YOUR_ENV_PATH:$PATH
 
 
 # 默认值
 NUM_EPISODES=20
 LR_ACTOR=1e-6
 n_samples_per_prompt=4
-DATADIR=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/zhangrunlai/data/rider_v4/train_2.parquet
-MODELDIR=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/caozhiquan/checkpoints/llama_factory/longcat_18b_kefu_base_sft_training_train_data_v2_4_lr-1e-5_epoch-5
-# REWARD_MODEL_PATH=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/caozhiquan/models/longcat_18b_V1_10_sanqing
+DATADIR=YOUR_DATA_PATH
+MODELDIR=YOUR_MODEL_PATH
 WARM=no
 experiment_name=zrl_grm_longcat_w03_add-add
 is_custome_model=False
 VAL_DATADIR=""
 
-THE_HOME=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/zhangrunlai
+THE_HOME=YOUR_HOME
 
 DATAPATH=$DATADIR
 VALDATAPATH=$DATADIR
@@ -125,8 +122,8 @@ MODEL_SAVE_NAME=${experiment_name}_episodes_${NUM_EPISODES}_actor_lr_${LR_ACTOR}
 SAVE_DIR=$WORKDIR/results/checkpoint/rl/longcat_18b_V1_10_sanqing/$MODEL_SAVE_NAME
 # REWARD_FUCTION1=rider_reward
 
-REWARD_MODEL_PATH1=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/caozhiquan/checkpoints/llama_factory/longcat_18b_kefu_base_sft_training_train_data_v2_4_lr-1e-5_epoch-5
-REWARD_MODEL_PATH2=/mnt/dolphinfs/hdd_pool/docker/user/hadoop-mtai/users/caozhiquan/checkpoints/llama_factory/longcat_18b_kefu_base_sft_training_train_data_v2_4_lr-1e-5_epoch-5
+REWARD_MODEL_PATH1=YOUR_REWARD_MODEL_PATH1
+REWARD_MODEL_PATH2=YOUR_REWARD_MODEL_PATH2
 TRAIN_FILE=$THE_HOME/data/rider_v4/train_2.parquet
 REWARD_FUCTION1=rider_reward
 REWARD_FUCTION2=consistency_reward
